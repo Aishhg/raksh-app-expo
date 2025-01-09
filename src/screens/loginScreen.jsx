@@ -15,7 +15,7 @@ const LoginScreen = ({ navigation }) => {
         <Button
           title="Sign-in with Google"
           color="gray"
-          onPress={() => {}}
+          onPress={() => navigation.navigate('HomeScreen')}
         />
         <Button
           title="Sign-up with Google"
