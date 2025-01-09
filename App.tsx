@@ -5,6 +5,7 @@ import LoginScreen from './src/screens/loginScreen';
 import AdminScreen from './src/screens/adminScreen';
 import HomeScreen from './src/screens/homeScreen';
 import AffectedScreen from './src/screens/affectedScreen';
+import VolunteerScreen from './src/screens/volunteerScreen';
 
 const Stack = createStackNavigator();
 
@@ -31,6 +32,11 @@ const App = () => {
           name="AffectedScreen"
           component={AffectedScreen} // You can define the AdminScreen as needed
           options={{ title: 'Affected', headerShown: true }}
+        />
+        <Stack.Screen
+          name="VolunteerScreen"
+          component={VolunteerScreen} // You can define the AdminScreen as needed
+          options={{ title: 'Volunteer', headerShown: true }}
         />
 
       </Stack.Navigator>
