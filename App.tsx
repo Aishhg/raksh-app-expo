@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from './src/screens/loginScreen'; 
 import AdminScreen from './src/screens/adminScreen';
 import HomeScreen from './src/screens/homeScreen';
+import AffectedScreen from './src/screens/affectedScreen';
 
 const Stack = createStackNavigator();
 
@@ -25,6 +26,11 @@ const App = () => {
           name="HomeScreen"
           component={HomeScreen} // You can define the HomeScreen as needed
           options={{ title: 'Home', headerShown: true }}
+        />
+        <Stack.Screen
+          name="AffectedScreen"
+          component={AffectedScreen} // You can define the AdminScreen as needed
+          options={{ title: 'Affected', headerShown: true }}
         />
 
       </Stack.Navigator>
