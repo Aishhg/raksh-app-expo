@@ -7,6 +7,7 @@ import HomeScreen from './src/screens/homeScreen';
 import AffectedScreen from './src/screens/affectedScreen';
 import VolunteerScreen from './src/screens/volunteerScreen';
 import MissingScreen from './src/screens/missingScreen';
+import PersonDetails from './src/screens/personScreen';
 
 const Stack = createStackNavigator();
 
@@ -42,7 +43,12 @@ const App = () => {
         <Stack.Screen
           name="MissingScreen"
           component={MissingScreen} // You can define the AdminScreen as needed
-          options={{ title: 'Missing', headerShown: true }}
+          options={{ title: 'Missing Person', headerShown: true }}
+        />
+        <Stack.Screen
+          name="PersonDetails"
+          component={PersonDetails} // You can define the AdminScreen as needed
+          options={{ title: 'Missing Person Details', headerShown: true }}
         />
 
       </Stack.Navigator>

@@ -2,19 +2,27 @@ import React, { useState } from 'react';
 import { View, Text, FlatList, Image, TouchableOpacity, StyleSheet } from 'react-native';
 
 const initialData = [
-    {
-      id: '1',
-      name: 'John Doe',
-      image: require("../../assets/john_doe.jpg"), // Replace with the actual path to the image
-      details: 'Age: 30, Last seen: New York, NY on Jan 5, 2025.',
-    },
-    {
-      id: '2',
-      name: 'Jane Smith',
-      image: require("../../assets/jane_smith.jpg"), // Replace with the actual path to the image
-      details: 'Age: 25, Last seen: Los Angeles, CA on Dec 29, 2024.',
-    },
-  ];  
+  {
+    id: '1',
+    name: 'John Doe',
+    image: require("../../assets/john_doe.jpg"), // Replace with the actual path to the image
+    age: 30,
+    gender: 'Male',
+    physicalDescription: 'Brown hair, blue eyes, scar on left cheek.',
+    height: "5'9''",
+    lastSeen: 'New York, NY on Jan 5, 2025.',
+  },
+  {
+    id: '2',
+    name: 'Jane Smith',
+    image: require("../../assets/jane_smith.jpg"), // Replace with the actual path to the image
+    age: 25,
+    gender: 'Female',
+    physicalDescription: 'Blonde hair, green eyes, tattoo on right wrist.',
+    height: "5'6''",
+    lastSeen: 'Los Angeles, CA on Dec 29, 2024.',
+  },
+];
 
 const MissingScreen = ({ navigation }) => {
   const [missingPersons, setMissingPersons] = useState(initialData);
