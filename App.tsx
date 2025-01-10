@@ -9,6 +9,7 @@ import VolunteerScreen from './src/screens/volunteerScreen';
 import MissingScreen from './src/screens/missingScreen';
 import PersonDetails from './src/screens/personScreen';
 import FoundScreen from './src/screens/foundScreen';
+import UpdateScreen from './src/screens/updateScreen';
 
 const Stack = createStackNavigator();
 
@@ -55,6 +56,11 @@ const App = () => {
           name="FoundScreen"
           component={FoundScreen} // You can define the AdminScreen as needed
           options={{ title: 'Found Person Details', headerShown: true }}
+        />
+        <Stack.Screen
+          name="UpdateScreen"
+          component={UpdateScreen} // You can define the AdminScreen as needed
+          options={{ title: 'Update Person Details', headerShown: true }}
         />
 
       </Stack.Navigator>
