@@ -25,7 +25,7 @@ const LoginScreen = ({ navigation }) => {
         <Button
           title="Admin"
           color="gray"
-          onPress={() => navigation.navigate('AdminScreen')}
+          onPress={() => navigation.navigate('AdminSignIn')}
         />
       </View>
     </ImageBackground>
