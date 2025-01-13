@@ -6,6 +6,7 @@ import AdminSignIn from './src/screens/adminSignin';
 import AdminPage from './src/screens/adminPage';
 import AdminmissingPersonsList from './src/screens/adminMissingpersons';
 import AdminfoundPersonsList from './src/screens/adminFoundpersons';
+import AdminDonations from './src/screens/adminDonations';
 
 const Stack = createStackNavigator();
 
@@ -38,6 +39,11 @@ const App = () => {
             name="AdminfoundPersonsList"
             component={AdminfoundPersonsList}
             options={{ title: 'Found Persons', headerShown: true }}
+          />
+          <Stack.Screen
+            name="AdminDonations"
+            component={AdminDonations}
+            options={{ title: 'Donations', headerShown: true }}
           />
           
         </Stack.Navigator>

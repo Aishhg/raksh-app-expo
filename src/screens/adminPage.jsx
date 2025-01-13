@@ -23,10 +23,13 @@ export default function AdminPage() {
         >
           <Text style={styles.buttonText}>Missing Persons</Text>
         </TouchableOpacity>
+
         <TouchableOpacity style={styles.button}
-        >
+          onPress={() => navigation.navigate('AdminDonations')}
+          >
           <Text style={styles.buttonText}>Donations</Text>
         </TouchableOpacity>
+
         <TouchableOpacity style={styles.button}
         onPress={() => navigation.navigate('AdminfoundPersonsList')}
         >
