@@ -1,55 +1,43 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet, ImageBackground } from 'react-native';
-
+import { View, Text, Button, StyleSheet } from 'react-native';
 
 const LoginScreen = ({ navigation }) => {
   return (
-    <ImageBackground
-      source={require("../../assets/rescueworkers.jpg")}
-      style={styles.backgroundImage}
-      imageStyle={styles.imageStyle}
-    >
-      <View style={styles.container}>
-        <Text style={styles.title}>RAKSHA</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>RAKSHA</Text>
 
-        <Button
-          title="Sign-in with Google"
-          color="gray"
-          onPress={() => navigation.navigate('HomeScreen')}
-        />
-        <Button
-          title="Sign-up with Google"
-          color="gray"
-          onPress={() => {}}
-        />
-        <Button
-          title="Admin"
-          color="gray"
-          onPress={() => navigation.navigate('AdminScreen')}
-        />
-      </View>
-    </ImageBackground>
+      <Button
+        title="Sign-in with Google"
+        color="gray"
+        onPress={() => navigation.navigate('HomeScreen')}
+      />
+      <Button
+        title="Sign-up with Google"
+        color="gray"
+        onPress={() => {}}
+      />
+      <Button
+        title="Admin"
+        color="gray"
+        onPress={() => navigation.navigate('AdminScreen')}
+      />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  backgroundImage: {
+  container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  imageStyle: {
-    opacity: 0.5,
-  },
-  container: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: 'black', // Plain black background
   },
   title: {
     fontSize: 40,
     fontWeight: 'bold',
     color: 'white',
     letterSpacing: 2,
+    marginBottom: 20, // Added some spacing
   },
 });
 

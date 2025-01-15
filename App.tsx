@@ -10,6 +10,7 @@ import MissingScreen from './src/screens/missingScreen';
 import PersonDetails from './src/screens/personScreen';
 import FoundScreen from './src/screens/foundScreen';
 import UpdateScreen from './src/screens/updateScreen';
+import AddPersonForm from './src/screens/addScreen';
 
 const Stack = createStackNavigator();
 
@@ -61,6 +62,11 @@ const App = () => {
           name="UpdateScreen"
           component={UpdateScreen} // You can define the AdminScreen as needed
           options={{ title: 'Update Person Details', headerShown: true }}
+        />
+        <Stack.Screen
+          name="AddPersonForm"
+          component={AddPersonForm} // You can define the AdminScreen as needed
+          options={{ title: 'Add Missing Person Details', headerShown: true }}
         />
 
       </Stack.Navigator>
