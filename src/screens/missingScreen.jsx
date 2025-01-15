@@ -4,23 +4,23 @@ import { View, Text, FlatList, Image, TouchableOpacity, StyleSheet } from 'react
 const initialData = [
   {
     id: '1',
-    name: 'John Doe',
+    name: 'Kabir Mika',
     image: require("../../assets/john_doe.jpg"), // Replace with the actual path to the image
     age: 30,
     gender: 'Male',
-    physicalDescription: 'Brown hair, blue eyes, scar on left cheek.',
+    physicalDescription: 'Black hair, brown eyes and skin, scar on left cheek.',
     height: "5'9''",
-    lastSeen: 'New York, NY on Jan 5, 2025.',
+    lastSeen: ' Varanasi, UP on Jan 5, 2025.',
   },
   {
     id: '2',
-    name: 'Jane Smith',
+    name: 'Jane Mary',
     image: require("../../assets/jane_smith.jpg"), // Replace with the actual path to the image
     age: 25,
     gender: 'Female',
-    physicalDescription: 'Blonde hair, green eyes, tattoo on right wrist.',
+    physicalDescription: 'Brown hair, green eyes, tattoo on right wrist.',
     height: "5'6''",
-    lastSeen: 'Los Angeles, CA on Dec 29, 2024.',
+    lastSeen: 'Varanasi, UP on Dec 29, 2024.',
   },
 ];
 
