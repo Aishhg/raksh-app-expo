@@ -94,13 +94,13 @@ const FoodDetails = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#000",
+    backgroundColor: "#1e293b", // Classy dark blue
     paddingHorizontal: 20,
     paddingTop: 40,
   },
   header: {
     fontSize: 24,
-    color: "#fff",
+    color: "#f8fafc", // Light text color
     textAlign: "center",
     marginBottom: 20,
   },
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
   donationRow: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#222",
+    backgroundColor: "#334155", // Slightly lighter dark blue
     padding: 15,
     borderRadius: 10,
   },
@@ -121,33 +121,33 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: "#6a5acd",
+    backgroundColor: "#6366f1", // Vibrant blue for contrast
     justifyContent: "center",
     alignItems: "center",
     marginRight: 15,
   },
   categoryText: {
-    color: "#fff",
+    color: "#f8fafc", // Light text color
     fontWeight: "bold",
     fontSize: 18,
   },
   donationCategory: {
-    color: "#fff",
+    color: "#f8fafc", // Light text color
     fontSize: 18,
     flex: 1,
   },
   arrow: {
-    color: "#fff",
+    color: "#f8fafc", // Light text color
     fontSize: 18,
   },
   detailsContainer: {
     marginTop: 10,
-    backgroundColor: "#333",
+    backgroundColor: "#475569", // Medium blue
     padding: 10,
     borderRadius: 10,
   },
   detailText: {
-    color: "#fff",
+    color: "#f8fafc", // Light text color
     fontSize: 16,
     marginBottom: 5,
   },
@@ -163,11 +163,11 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#444",
+    backgroundColor: "#64748b", // Muted dark blue
     marginHorizontal: 10,
   },
   actionText: {
-    color: "#fff",
+    color: "#f8fafc", // Light text color
     fontSize: 24,
     fontWeight: "bold",
   },

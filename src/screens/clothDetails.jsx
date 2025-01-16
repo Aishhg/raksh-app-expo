@@ -92,85 +92,86 @@ const ClothDetails = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#000",
-    paddingHorizontal: 20,
-    paddingTop: 40,
-  },
-  header: {
-    fontSize: 24,
-    color: "#fff",
-    textAlign: "center",
-    marginBottom: 20,
-  },
-  list: {
-    paddingBottom: 20,
-  },
-  donationContainer: {
-    marginBottom: 20,
-  },
-  donationRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "#222",
-    padding: 15,
-    borderRadius: 10,
-  },
-  categoryTag: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: "#6a5acd",
-    justifyContent: "center",
-    alignItems: "center",
-    marginRight: 15,
-  },
-  categoryText: {
-    color: "#fff",
-    fontWeight: "bold",
-    fontSize: 18,
-  },
-  donationCategory: {
-    color: "#fff",
-    fontSize: 18,
-    flex: 1,
-  },
-  arrow: {
-    color: "#fff",
-    fontSize: 18,
-  },
-  detailsContainer: {
-    marginTop: 10,
-    backgroundColor: "#333",
-    padding: 10,
-    borderRadius: 10,
-  },
-  detailText: {
-    color: "#fff",
-    fontSize: 16,
-    marginBottom: 5,
-  },
-  actionContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginTop: 10,
-  },
-  actionButton: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#444",
-    marginHorizontal: 10,
-  },
-  actionText: {
-    color: "#fff",
-    fontSize: 24,
-    fontWeight: "bold",
-  },
-});
+    container: {
+      flex: 1,
+      backgroundColor: "#1e293b", // Classy dark blue
+      paddingHorizontal: 20,
+      paddingTop: 40,
+    },
+    header: {
+      fontSize: 24,
+      color: "#f8fafc", // Light text color
+      textAlign: "center",
+      marginBottom: 20,
+    },
+    list: {
+      paddingBottom: 20,
+    },
+    donationContainer: {
+      marginBottom: 20,
+    },
+    donationRow: {
+      flexDirection: "row",
+      alignItems: "center",
+      backgroundColor: "#334155", // Slightly lighter dark blue
+      padding: 15,
+      borderRadius: 10,
+    },
+    categoryTag: {
+      width: 40,
+      height: 40,
+      borderRadius: 20,
+      backgroundColor: "#6366f1", // Vibrant blue for contrast
+      justifyContent: "center",
+      alignItems: "center",
+      marginRight: 15,
+    },
+    categoryText: {
+      color: "#f8fafc", // Light text color
+      fontWeight: "bold",
+      fontSize: 18,
+    },
+    donationCategory: {
+      color: "#f8fafc", // Light text color
+      fontSize: 18,
+      flex: 1,
+    },
+    arrow: {
+      color: "#f8fafc", // Light text color
+      fontSize: 18,
+    },
+    detailsContainer: {
+      marginTop: 10,
+      backgroundColor: "#475569", // Medium blue
+      padding: 10,
+      borderRadius: 10,
+    },
+    detailText: {
+      color: "#f8fafc", // Light text color
+      fontSize: 16,
+      marginBottom: 5,
+    },
+    actionContainer: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+      marginTop: 10,
+    },
+    actionButton: {
+      width: 50,
+      height: 50,
+      borderRadius: 25,
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: "#64748b", // Muted dark blue
+      marginHorizontal: 10,
+    },
+    actionText: {
+      color: "#f8fafc", // Light text color
+      fontSize: 24,
+      fontWeight: "bold",
+    },
+  });
+  
 
 export default ClothDetails;

@@ -36,18 +36,18 @@ const AdminDonations = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000', // Black background
+    backgroundColor: '#1e293b', // Classy dark blue background
   },
   header: {
     paddingVertical: 20,
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderBottomColor: '#333',
+    borderBottomColor: '#475569', // Subtle lighter dark blue
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#fff',
+    color: '#f8fafc', // Light text color
   },
   content: {
     flex: 1,
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#555', // Gray background
+    backgroundColor: '#334155', // Slightly lighter dark blue
     borderRadius: 25,
     paddingVertical: 15,
     paddingHorizontal: 20,
@@ -73,14 +73,15 @@ const styles = StyleSheet.create({
   },
   categoryText: {
     fontSize: 18,
-    color: '#fff',
+    color: '#f8fafc', // Light text color
     fontWeight: '600',
   },
   countText: {
     fontSize: 18,
-    color: '#fff',
+    color: '#f8fafc', // Light text color
     fontWeight: '600',
   },
 });
+
 
 export default AdminDonations;

@@ -31,7 +31,7 @@ const AdminSignIn = () => {
         />
       </View>
       <TouchableOpacity style={styles.button} onPress={handleSignIn}>
-        <Text style={styles.buttonText}>Sign In</Text>
+        <Text style={styles.buttonText}>SignIn</Text>
       </TouchableOpacity>
     </View>
   );
@@ -40,7 +40,7 @@ const AdminSignIn = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#000",
+    backgroundColor: "#1e293b", // Classy dark blue
     justifyContent: "center",
     alignItems: "center",
     padding: 20,
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     fontWeight: "bold",
-    color: "#FFF",
+    color: "#f8fafc", // Light text color
     marginBottom: 30,
   },
   inputContainer: {
@@ -57,20 +57,20 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 16,
-    color: "#FFF",
+    color: "#f8fafc", // Light text color
     marginBottom: 5,
   },
   input: {
-    backgroundColor: "#1A1A1A",
+    backgroundColor: "#1e293b", // Classy dark blue
     borderRadius: 8,
     padding: 12,
-    color: "#FFF",
+    color: "#f8fafc", // Light text color
     fontSize: 16,
-    borderColor: "#333",
+    borderColor: "#64748b", // Subtle gray-blue
     borderWidth: 1,
   },
   button: {
-    backgroundColor: "#444",
+    backgroundColor: "#64748b", // Gray-blue button background
     borderRadius: 8,
     paddingVertical: 12,
     paddingHorizontal: 20,
@@ -80,8 +80,9 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 18,
     fontWeight: "bold",
-    color: "#FFF",
+    color: "#f8fafc", // Light text color
   },
 });
+
 
 export default AdminSignIn;
