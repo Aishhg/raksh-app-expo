@@ -1,25 +1,74 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import LoginScreen from './src/screens/loginScreen';
+
+import LoginScreen from './src/screens/loginScreen'; 
+import HomeScreen from './src/screens/homeScreen';
+import AffectedScreen from './src/screens/affectedScreen';
+import VolunteerScreen from './src/screens/volunteerScreen';
+import MissingScreen from './src/screens/missingScreen';
+import PersonDetails from './src/screens/personScreen';
+import FoundScreen from './src/screens/foundScreen';
+import UpdateScreen from './src/screens/updateScreen';
+import AddPersonForm from './src/screens/addScreen';
 import AdminSignIn from './src/screens/adminSignin';
 import AdminPage from './src/screens/adminPage';
 import AdminmissingPersonsList from './src/screens/adminMissingpersons';
 import AdminfoundPersonsList from './src/screens/adminFoundpersons';
 import AdminDonations from './src/screens/adminDonations';
 
+
 const Stack = createStackNavigator();
 
 const App = () => {
   return (
-    
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login">
-          <Stack.Screen
-            name="Login"
-            component={LoginScreen}
-            options={{ title: 'Login', headerShown: false }}
-          />
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{ title: 'Login', headerShown: false }}
+        />
+        <Stack.Screen
+          name="HomeScreen"
+          component={HomeScreen} // You can define the HomeScreen as needed
+          options={{ title: 'Home', headerShown: true }}
+        />
+        <Stack.Screen
+          name="AffectedScreen"
+          component={AffectedScreen} // You can define the AdminScreen as needed
+          options={{ title: 'Affected', headerShown: true }}
+        />
+        <Stack.Screen
+          name="VolunteerScreen"
+          component={VolunteerScreen} // You can define the AdminScreen as needed
+          options={{ title: 'Volunteer', headerShown: true }}
+        />
+        <Stack.Screen
+          name="MissingScreen"
+          component={MissingScreen} // You can define the AdminScreen as needed
+          options={{ title: 'Missing Person', headerShown: true }}
+        />
+        <Stack.Screen
+          name="PersonDetails"
+          component={PersonDetails} // You can define the AdminScreen as needed
+          options={{ title: 'Missing Person Details', headerShown: true }}
+        />
+        <Stack.Screen
+          name="FoundScreen"
+          component={FoundScreen} // You can define the AdminScreen as needed
+          options={{ title: 'Found Person Details', headerShown: true }}
+        />
+        <Stack.Screen
+          name="UpdateScreen"
+          component={UpdateScreen} // You can define the AdminScreen as needed
+          options={{ title: 'Update Person Details', headerShown: true }}
+        />
+        <Stack.Screen
+          name="AddPersonForm"
+          component={AddPersonForm} // You can define the AdminScreen as needed
+          options={{ title: 'Add Missing Person Details', headerShown: true }}
+        />
           <Stack.Screen
             name="AdminSignIn"
             component={AdminSignIn}
