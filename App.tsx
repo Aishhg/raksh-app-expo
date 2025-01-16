@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+
 import LoginScreen from './src/screens/loginScreen'; 
-import AdminScreen from './src/screens/adminScreen';
 import HomeScreen from './src/screens/homeScreen';
 import AffectedScreen from './src/screens/affectedScreen';
 import VolunteerScreen from './src/screens/volunteerScreen';
@@ -11,6 +11,12 @@ import PersonDetails from './src/screens/personScreen';
 import FoundScreen from './src/screens/foundScreen';
 import UpdateScreen from './src/screens/updateScreen';
 import AddPersonForm from './src/screens/addScreen';
+import AdminSignIn from './src/screens/adminSignin';
+import AdminPage from './src/screens/adminPage';
+import AdminmissingPersonsList from './src/screens/adminMissingpersons';
+import AdminfoundPersonsList from './src/screens/adminFoundpersons';
+import AdminDonations from './src/screens/adminDonations';
+
 
 const Stack = createStackNavigator();
 
@@ -22,11 +28,6 @@ const App = () => {
           name="Login"
           component={LoginScreen}
           options={{ title: 'Login', headerShown: false }}
-        />
-        <Stack.Screen
-          name="AdminScreen"
-          component={AdminScreen} // You can define the AdminScreen as needed
-          options={{ title: 'Admin', headerShown: true }}
         />
         <Stack.Screen
           name="HomeScreen"
@@ -68,9 +69,34 @@ const App = () => {
           component={AddPersonForm} // You can define the AdminScreen as needed
           options={{ title: 'Add Missing Person Details', headerShown: true }}
         />
-
-      </Stack.Navigator>
-    </NavigationContainer>
+          <Stack.Screen
+            name="AdminSignIn"
+            component={AdminSignIn}
+            options={{ title: 'Admin Sign In', headerShown: true }}
+          />
+          <Stack.Screen
+            name="AdminPage"
+            component={AdminPage}
+            options={{ title: 'Admin Page', headerShown: true }}
+          />
+          <Stack.Screen
+            name="AdminmissingPersonsList"
+            component={AdminmissingPersonsList}
+            options={{ title: 'Missing Persons', headerShown: true }}
+          />
+          <Stack.Screen
+            name="AdminfoundPersonsList"
+            component={AdminfoundPersonsList}
+            options={{ title: 'Found Persons', headerShown: true }}
+          />
+          <Stack.Screen
+            name="AdminDonations"
+            component={AdminDonations}
+            options={{ title: 'Donations', headerShown: true }}
+          />
+          
+        </Stack.Navigator>
+      </NavigationContainer>  
   );
 };
 

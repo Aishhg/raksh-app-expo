@@ -23,10 +23,9 @@ const LoginScreen = ({ navigation }) => {
           <Ionicons name="logo-google" size={20} color="#f8fafc" />
           <Text style={styles.buttonText}>Continue with Google</Text>
         </TouchableOpacity>
-
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('AdminScreen')}
+          onPress={() => navigation.navigate('AdminSignIn')}
         >
           <Ionicons name="key-outline" size={20} color="#f8fafc" />
           <Text style={styles.buttonText}>Admin</Text>
