@@ -3,14 +3,13 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 const AdminDonations = ({ navigation }) => {
   const donationCategories = [
-    { title: 'Food', count: 45 },
-    { title: 'Cloth', count: 50 },
-    { title: 'Other', count: 27 },
+    { title: 'Food', count: 25, screen: 'FoodDetails' },
+    { title: 'Cloth', count: 95, screen: 'ClothDetails' },
+    { title: 'Other', count: 15, screen: 'OtherDetails' },
   ];
 
-  const handlePress = (category) => {
-    // Handle the click for each category
-    console.log(`${category} clicked`);
+  const handlePress = (screen) => {
+    navigation.navigate(screen);
   };
 
   return (
@@ -23,7 +22,7 @@ const AdminDonations = ({ navigation }) => {
           <TouchableOpacity
             key={index}
             style={styles.categoryButton}
-            onPress={() => handlePress(category.title)}
+            onPress={() => handlePress(category.screen)}
           >
             <Text style={styles.categoryText}>{category.title}</Text>
             <Text style={styles.countText}>{category.count}</Text>

@@ -5,14 +5,14 @@ const AdminmissingPersonsList = () => {
   const [selectedPerson, setSelectedPerson] = useState(null); // State to track which person is selected for verification
 
   const data = [
-    { id: "1", name: "John Doe" },
-    { id: "2", name: "Jane Smith" },
-    { id: "3", name: "Ghi" },
-    { id: "4", name: "Jkl" },
-    { id: "5", name: "Mno" },
-    { id: "6", name: "Pqr" },
-    { id: "7", name: "Stu" },
-    { id: "8", name: "Vwx" },
+    { id: "1", name: "Aarav Sharma" },
+    { id: "2", name: "Ananya Rao" },
+    { id: "3", name: "Ishaan Patel" },
+    { id: "4", name: "Maya Menon" },
+    { id: "5", name: "Riya Das" },
+    { id: "6", name: "Aditya Verma" },
+    { id: "7", name: "Neha Gupta" },
+    { id: "8", name: "Kavya Singh" },
   ];
 
   const handleSelectPerson = (id) => {
