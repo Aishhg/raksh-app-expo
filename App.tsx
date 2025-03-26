@@ -19,15 +19,16 @@ import AdminDonations from './src/screens/adminDonations';
 import FoodDetails from './src/screens/foodDetails'; 
 import ClothDetails from './src/screens/clothDetails';
 import OtherDetails from './src/screens/otherDetails';
+import SignUpScreen from './src/screens/SignUpScreen';
 
 const Stack = createStackNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
+      <Stack.Navigator initialRouteName="LoginScreen">
         <Stack.Screen
-          name="Login"
+          name="LoginScreen"
           component={LoginScreen}
           options={{ title: 'Login', headerShown: false }}
         />
@@ -110,6 +111,11 @@ const App = () => {
           name="OtherDetails"
           component={OtherDetails}
           options={{ title: 'Other Details', headerShown: true }}
+        />
+        <Stack.Screen
+        name="SignUpScreen"
+        component={SignUpScreen}
+        options={{ title: 'SignUp Screen', headerShown: true}}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -1,36 +1,69 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, TextInput, StyleSheet, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../firebaseConfig';
 
 const LoginScreen = ({ navigation }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = async () => {
+    if (!email || !password) {
+      Alert.alert("Error", "Please enter both email and password.");
+      return;
+    }
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      Alert.alert("Success", "Logged in successfully!");
+      navigation.navigate('HomeScreen'); // Navigate to Home after successful login
+    } catch (error) {
+      Alert.alert("Login Failed", error.message);
+    }
+  };
+
   return (
     <View style={styles.container}>
       {/* Header Section */}
       <View style={styles.header}>
         <Ionicons name="shield-outline" size={64} color="#f8fafc" />
         <Text style={styles.title}>RAKSHA</Text>
-        <Text style={styles.subtitle}>
-          A DISASTER RELIEF AND RESCUE COMMUNICATION SYSTEM
-        </Text>
+        <Text style={styles.subtitle}>A DISASTER RELIEF AND RESCUE COMMUNICATION SYSTEM</Text>
       </View>
 
+      {/* Input Fields */}
+      <TextInput
+        style={styles.input}
+        placeholder="Email"
+        placeholderTextColor="#cbd5e1"
+        value={email}
+        onChangeText={setEmail}
+        keyboardType="email-address"
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Password"
+        placeholderTextColor="#cbd5e1"
+        value={password}
+        onChangeText={setPassword}
+        secureTextEntry
+      />
+
       {/* Buttons Section */}
-      <View style={styles.buttonsContainer}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate('HomeScreen')}
-        >
-          <Ionicons name="logo-google" size={20} color="#f8fafc" />
-          <Text style={styles.buttonText}>Continue with Google</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate('AdminSignIn')}
-        >
-          <Ionicons name="key-outline" size={20} color="#f8fafc" />
-          <Text style={styles.buttonText}>Admin</Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+        <Ionicons name="log-in-outline" size={20} color="#f8fafc" />
+        <Text style={styles.buttonText}>Login</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('AdminSignIn')}>
+        <Ionicons name="key-outline" size={20} color="#f8fafc" />
+        <Text style={styles.buttonText}>Admin</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={() => navigation.navigate('SignUpScreen')}>
+        <Text style={styles.linkText}>Don't have an account? Sign Up</Text>
+      </TouchableOpacity>
 
       {/* Footer Section */}
       <View style={styles.footer}>
@@ -45,10 +78,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#1e293b',
     paddingHorizontal: 20,
+    justifyContent: 'center',
   },
   header: {
     alignItems: 'center',
-    marginTop: 80,
     marginBottom: 40,
   },
   title: {
@@ -64,9 +97,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 10,
   },
-  buttonsContainer: {
-    flex: 1,
-    justifyContent: 'center',
+  input: {
+    backgroundColor: '#334155',
+    color: '#f8fafc',
+    padding: 12,
+    borderRadius: 8,
+    marginBottom: 15,
+    fontSize: 16,
   },
   button: {
     flexDirection: 'row',
@@ -74,13 +111,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#64748b',
     paddingVertical: 14,
-    paddingHorizontal: 25,
     borderRadius: 10,
     marginBottom: 20,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 4,
   },
   buttonText: {
     fontSize: 16,
@@ -88,9 +120,15 @@ const styles = StyleSheet.create({
     color: '#f8fafc',
     marginLeft: 10,
   },
+  linkText: {
+    textAlign: 'center',
+    color: '#f8fafc',
+    fontSize: 14,
+    marginTop: 10,
+  },
   footer: {
     alignItems: 'center',
-    marginBottom: 20,
+    marginTop: 20,
   },
   footerText: {
     fontSize: 14,
