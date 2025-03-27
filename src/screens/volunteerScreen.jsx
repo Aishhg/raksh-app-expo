@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, ScrollView, Alert, TouchableOpacity } from 'react-native';
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from '../../firebaseConfig'; // Firestore instance
+import { useNavigation } from '@react-navigation/native'; // Import navigation hook
 
 const CustomCheckbox = ({ checked, onChange, label }) => (
   <TouchableOpacity onPress={() => onChange(!checked)} style={styles.checkboxContainer}>
@@ -9,6 +12,8 @@ const CustomCheckbox = ({ checked, onChange, label }) => (
 );
 
 const VolunteerScreen = () => {
+  const navigation = useNavigation(); // Initialize navigation
+
   const [formData, setFormData] = useState({
     name: '',
     address: '',
@@ -23,8 +28,7 @@ const VolunteerScreen = () => {
     setFormData({ ...formData, [field]: value });
   };
 
-  const handleSubmit = () => {
-    // Basic validation
+  const handleSubmit = async () => {
     if (!formData.name || !formData.address || !formData.phone || !formData.email) {
       Alert.alert('Error', 'Please fill in all fields.');
       return;
@@ -35,10 +39,21 @@ const VolunteerScreen = () => {
       return;
     }
 
-    // Submit form data (replace with API call or other actions)
-    Alert.alert('Success', 'Thank you for volunteering!', [
-      { text: 'OK', onPress: () => console.log(formData) },
-    ]);
+    try {
+      await addDoc(collection(db, 'Volunteers'), {
+        ...formData,
+        valid: 0, // Admin validation required
+      });
+
+      Alert.alert('Success', 'Thank you for volunteering! Redirecting to Home Page.');
+
+      // Redirect to AdminPage after submission
+      navigation.navigate('HomeScreen'); 
+
+    } catch (error) {
+      console.error('Error adding volunteer: ', error);
+      Alert.alert('Error', 'Failed to submit volunteer details.');
+    }
   };
 
   return (
