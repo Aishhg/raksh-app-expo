@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, ScrollView, Alert } from 'react-native';
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from '../../firebaseConfig'; // Import Firestore instance
 
 const AffectedScreen = () => {
   const [formData, setFormData] = useState({
@@ -15,8 +17,7 @@ const AffectedScreen = () => {
     setFormData({ ...formData, [field]: value });
   };
 
-  const handleSubmit = () => {
-    // Validate input (simple example)
+  const handleSubmit = async () => {
     if (
       !formData.name ||
       !formData.address ||
@@ -29,10 +30,25 @@ const AffectedScreen = () => {
       return;
     }
 
-    // Submit form data (you can replace this with API call)
-    Alert.alert('Success', 'Form submitted successfully!', [
-      { text: 'OK', onPress: () => console.log(formData) },
-    ]);
+    try {
+      // Add data to Firestore under "Affected" collection
+      await addDoc(collection(db, 'Affected'), formData);
+      Alert.alert('Success', 'Form submitted successfully!');
+      
+      // Reset form after successful submission
+      setFormData({
+        name: '',
+        address: '',
+        phone: '',
+        email: '',
+        financialStatus: '',
+        requirements: '',
+      });
+
+    } catch (error) {
+      console.error('Error adding document: ', error);
+      Alert.alert('Error', 'Failed to submit form.');
+    }
   };
 
   return (
