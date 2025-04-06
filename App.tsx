@@ -21,102 +21,36 @@ import ClothDetails from './src/screens/clothDetails';
 import OtherDetails from './src/screens/otherDetails';
 import SignUpScreen from './src/screens/SignUpScreen';
 
+// ✅ import your firebase config here
+import { getFirestore } from 'firebase/firestore';
+import { app } from './firebaseConfig'; // 📌 adjust path if needed
+
+const db = getFirestore(app); // You can use db later where needed
+
 const Stack = createStackNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="LoginScreen">
-        <Stack.Screen
-          name="LoginScreen"
-          component={LoginScreen}
-          options={{ title: 'Login', headerShown: false }}
-        />
-        <Stack.Screen
-          name="HomeScreen"
-          component={HomeScreen}
-          options={{ title: 'Home', headerShown: true }}
-        />
-        <Stack.Screen
-          name="AffectedScreen"
-          component={AffectedScreen}
-          options={{ title: 'Affected', headerShown: true }}
-        />
-        <Stack.Screen
-          name="VolunteerScreen"
-          component={VolunteerScreen}
-          options={{ title: 'Volunteer', headerShown: true }}
-        />
-        <Stack.Screen
-          name="MissingScreen"
-          component={MissingScreen}
-          options={{ title: 'Missing Person', headerShown: true }}
-        />
-        <Stack.Screen
-          name="PersonDetails"
-          component={PersonDetails}
-          options={{ title: 'Missing Person Details', headerShown: true }}
-        />
-        <Stack.Screen
-          name="FoundScreen"
-          component={FoundScreen}
-          options={{ title: 'Found Person Details', headerShown: true }}
-        />
-        <Stack.Screen
-          name="UpdateScreen"
-          component={UpdateScreen}
-          options={{ title: 'Update Person Details', headerShown: true }}
-        />
-        <Stack.Screen
-          name="AddPersonForm"
-          component={AddPersonForm}
-          options={{ title: 'Add Missing Person Details', headerShown: true }}
-        />
-        <Stack.Screen
-          name="AdminSignIn"
-          component={AdminSignIn}
-          options={{ title: 'Admin Sign In', headerShown: true }}
-        />
-        <Stack.Screen
-          name="AdminPage"
-          component={AdminPage}
-          options={{ title: 'Admin Page', headerShown: true }}
-        />
-        <Stack.Screen
-          name="AdminmissingPersonsList"
-          component={AdminmissingPersonsList}
-          options={{ title: 'Missing Persons', headerShown: true }}
-        />
-        <Stack.Screen
-          name="AdminfoundPersonsList"
-          component={AdminfoundPersonsList}
-          options={{ title: 'Found Persons', headerShown: true }}
-        />
-        <Stack.Screen
-          name="AdminDonations"
-          component={AdminDonations}
-          options={{ title: 'Donations', headerShown: true }}
-        />
-        <Stack.Screen
-          name="FoodDetails"
-          component={FoodDetails}
-          options={{ title: 'Food Details', headerShown: true }}
-        />
-        <Stack.Screen
-          name="ClothDetails"
-          component={ClothDetails}
-          options={{ title: 'Cloth Details', headerShown: true }}
-        />
-        <Stack.Screen
-          name="OtherDetails"
-          component={OtherDetails}
-          options={{ title: 'Other Details', headerShown: true }}
-        />
-        <Stack.Screen
-        name="SignUpScreen"
-        component={SignUpScreen}
-        options={{ title: 'SignUp Screen', headerShown: true}}
-        />
+        <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ title: 'Login', headerShown: false }} />
+        <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ title: 'Home', headerShown: true }} />
+        <Stack.Screen name="AffectedScreen" component={AffectedScreen} options={{ title: 'Affected', headerShown: true }} />
+        <Stack.Screen name="VolunteerScreen" component={VolunteerScreen} options={{ title: 'Volunteer', headerShown: true }} />
+        <Stack.Screen name="MissingScreen" component={MissingScreen} options={{ title: 'Missing Person', headerShown: true }} />
+        <Stack.Screen name="PersonDetails" component={PersonDetails} options={{ title: 'Missing Person Details', headerShown: true }} />
+        <Stack.Screen name="FoundScreen" component={FoundScreen} options={{ title: 'Found Person Details', headerShown: true }} />
+        <Stack.Screen name="UpdateScreen" component={UpdateScreen} options={{ title: 'Update Person Details', headerShown: true }} />
+        <Stack.Screen name="AddPersonForm" component={AddPersonForm} options={{ title: 'Add Missing Person Details', headerShown: true }} />
+        <Stack.Screen name="AdminSignIn" component={AdminSignIn} options={{ title: 'Admin Sign In', headerShown: true }} />
+        <Stack.Screen name="AdminPage" component={AdminPage} options={{ title: 'Admin Page', headerShown: true }} />
+        <Stack.Screen name="AdminmissingPersonsList" component={AdminmissingPersonsList} options={{ title: 'Missing Persons', headerShown: true }} />
+        <Stack.Screen name="AdminfoundPersonsList" component={AdminfoundPersonsList} options={{ title: 'Found Persons', headerShown: true }} />
+        <Stack.Screen name="AdminDonations" component={AdminDonations} options={{ title: 'Donations', headerShown: true }} />
+        <Stack.Screen name="FoodDetails" component={FoodDetails} options={{ title: 'Food Details', headerShown: true }} />
+        <Stack.Screen name="ClothDetails" component={ClothDetails} options={{ title: 'Cloth Details', headerShown: true }} />
+        <Stack.Screen name="OtherDetails" component={OtherDetails} options={{ title: 'Other Details', headerShown: true }} />
+        <Stack.Screen name="SignUpScreen" component={SignUpScreen} options={{ title: 'SignUp Screen', headerShown: true }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

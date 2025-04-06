@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Alert, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import { db } from "../../firebaseConfig"; // Import Firestore config
+import { db } from "../../firebaseConfig"; // Firestore config
+import AsyncStorage from "@react-native-async-storage/async-storage"; // Import AsyncStorage
 
 const AdminSignIn = () => {
   const navigation = useNavigation();
@@ -14,31 +15,30 @@ const AdminSignIn = () => {
       Alert.alert("Error", "Please enter both username and password.");
       return;
     }
-  
+
     try {
-      // Ensure Firebase Authentication is enabled
       const adminRef = collection(db, "Admins");
       const q = query(adminRef, where("username", "==", username));
       const querySnapshot = await getDocs(q);
-  
+
       if (querySnapshot.empty) {
         Alert.alert("Error", "Admin not found!");
         return;
       }
-  
-      let isValidAdmin = false;
-  
+
+      let validAdminId = null;
+
       querySnapshot.forEach((doc) => {
         const adminData = doc.data();
         if (adminData.password === password) {
-          isValidAdmin = true;
+          validAdminId = doc.id;
         }
       });
-  
-      if (isValidAdmin) {
+
+      if (validAdminId) {
+        await AsyncStorage.setItem("adminId", validAdminId); // Store adminId in AsyncStorage
         Alert.alert("Success", "Login successful!");
-        // Navigate to Admin Page only after successful login
-        navigation.navigate("AdminPage");
+        navigation.replace("AdminPage"); // Navigate to Admin Dashboard
       } else {
         Alert.alert("Error", "Incorrect password!");
       }
@@ -46,8 +46,8 @@ const AdminSignIn = () => {
       console.error("Login Error:", error);
       Alert.alert("Login Failed", "An error occurred. Check permissions and try again.");
     }
-  };  
-  
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Admin Portal</Text>
