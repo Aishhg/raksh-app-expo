@@ -10,6 +10,10 @@ import {
   Alert,
 } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import { app } from '../../firebaseConfig'; // Ensure correct import of Firebase configuration
+
+const db = getFirestore(app);
 
 const AddPersonForm = ({ navigation }) => {
   const [newPerson, setNewPerson] = useState({
@@ -19,7 +23,7 @@ const AddPersonForm = ({ navigation }) => {
     physicalDescription: '',
     height: '',
     lastSeen: '',
-    image: null, // State for the selected image
+    image: null, // Image URI
   });
 
   const handleInputChange = (field, value) => {
@@ -28,22 +32,20 @@ const AddPersonForm = ({ navigation }) => {
 
   const handleImagePick = async () => {
     try {
-      // Request permission to access media library
       const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
       if (status !== 'granted') {
         Alert.alert('Permission Denied', 'We need camera roll permissions to proceed.');
         return;
       }
 
-      // Launch image picker
       const result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Images, // Correct media type for images
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
         allowsEditing: true,
         quality: 1,
       });
 
       if (!result.canceled) {
-        setNewPerson({ ...newPerson, image: result.assets[0].uri }); // Update image URI
+        setNewPerson({ ...newPerson, image: result.assets[0].uri });
       }
     } catch (error) {
       console.error('Error picking image:', error);
@@ -51,10 +53,25 @@ const AddPersonForm = ({ navigation }) => {
     }
   };
 
-  const handleSubmit = () => {
-    // Logic to handle form submission
-    console.log('New Person Data:', newPerson);
-    navigation.goBack(); // Navigate back to the missing screen after submission
+  const handleSubmit = async () => {
+    try {
+      await addDoc(collection(db, 'Missing'), {
+        name: newPerson.name,
+        age: newPerson.age,
+        gender: newPerson.gender,
+        physicalDescription: newPerson.physicalDescription,
+        height: newPerson.height,
+        lastSeen: newPerson.lastSeen,
+        image: newPerson.image || '', // Store empty string if no image
+        valid: 0, // Admin validation required
+        timestamp: new Date(),
+      });
+      Alert.alert('Success', 'Person added successfully!');
+      navigation.goBack();
+    } catch (error) {
+      console.error('Error adding person:', error);
+      Alert.alert('Error', 'Failed to add person.');
+    }
   };
 
   return (
@@ -67,66 +84,18 @@ const AddPersonForm = ({ navigation }) => {
         )}
       </TouchableOpacity>
 
-      <View style={styles.formGroup}>
-        <Text style={styles.label}>Name</Text>
-        <TextInput
-          style={styles.input}
-          value={newPerson.name}
-          onChangeText={(value) => handleInputChange('name', value)}
-          placeholder="Enter name"
-        />
-      </View>
-
-      <View style={styles.formGroup}>
-        <Text style={styles.label}>Age</Text>
-        <TextInput
-          style={styles.input}
-          value={newPerson.age}
-          onChangeText={(value) => handleInputChange('age', value)}
-          placeholder="Enter age"
-          keyboardType="numeric"
-        />
-      </View>
-
-      <View style={styles.formGroup}>
-        <Text style={styles.label}>Gender</Text>
-        <TextInput
-          style={styles.input}
-          value={newPerson.gender}
-          onChangeText={(value) => handleInputChange('gender', value)}
-          placeholder="Enter gender"
-        />
-      </View>
-
-      <View style={styles.formGroup}>
-        <Text style={styles.label}>Physical Description</Text>
-        <TextInput
-          style={styles.input}
-          value={newPerson.physicalDescription}
-          onChangeText={(value) => handleInputChange('physicalDescription', value)}
-          placeholder="Enter physical description"
-        />
-      </View>
-
-      <View style={styles.formGroup}>
-        <Text style={styles.label}>Height</Text>
-        <TextInput
-          style={styles.input}
-          value={newPerson.height}
-          onChangeText={(value) => handleInputChange('height', value)}
-          placeholder="Enter height"
-        />
-      </View>
-
-      <View style={styles.formGroup}>
-        <Text style={styles.label}>Last Seen</Text>
-        <TextInput
-          style={styles.input}
-          value={newPerson.lastSeen}
-          onChangeText={(value) => handleInputChange('lastSeen', value)}
-          placeholder="Enter last seen location"
-        />
-      </View>
+      {['name', 'age', 'gender', 'physicalDescription', 'height', 'lastSeen'].map((field) => (
+        <View style={styles.formGroup} key={field}>
+          <Text style={styles.label}>{field.replace(/([A-Z])/g, ' $1').trim()}</Text>
+          <TextInput
+            style={styles.input}
+            value={newPerson[field]}
+            onChangeText={(value) => handleInputChange(field, value)}
+            placeholder={`Enter ${field}`}
+            keyboardType={field === 'age' ? 'numeric' : 'default'}
+          />
+        </View>
+      ))}
 
       <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
         <Text style={styles.submitButtonText}>Submit</Text>
