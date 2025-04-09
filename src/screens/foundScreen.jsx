@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, Image, TextInput, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, Image, TextInput, StyleSheet, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
+import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import { getApp } from 'firebase/app'; // If you initialized firebase separately
+// Make sure Firebase is initialized before using this!
 
 const FoundScreen = ({ route, navigation }) => {
   const { person } = route.params;
@@ -10,20 +13,30 @@ const FoundScreen = ({ route, navigation }) => {
   const [physicalCondition, setPhysicalCondition] = useState('alive_healthy'); // Default dropdown value
   const [additionalInfo, setAdditionalInfo] = useState('');
 
-  const handleSubmit = () => {
-    // Handle form submission logic here, e.g., API call or saving data
-    console.log({
-      name: person.name,
-      age: person.age,
-      gender: person.gender,
-      locationFound,
-      foundBy,
-      physicalCondition,
-      additionalInfo,
-    });
+  const handleSubmit = async () => {
+    try {
+      const db = getFirestore(getApp()); // get the Firestore instance
 
-    // Navigate back to MissingScreen
-    navigation.navigate('MissingScreen');
+      const foundData = {
+        name: person.name,
+        age: person.age,
+        gender: person.gender,
+        locationFound: locationFound,
+        foundBy: foundBy,
+        physicalCondition: physicalCondition,
+        additionalInfo: additionalInfo,
+        valid: 0, // Default field
+        timestamp: new Date(), // Optional: timestamp when added
+      };
+
+      await addDoc(collection(db, 'Found'), foundData);
+
+      Alert.alert('Success', 'Person marked as found successfully.');
+      navigation.navigate('MissingScreen');
+    } catch (error) {
+      console.error('Error adding found person:', error);
+      Alert.alert('Error', 'Something went wrong. Please try again.');
+    }
   };
 
   return (

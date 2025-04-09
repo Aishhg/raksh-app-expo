@@ -1,38 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, Image, TouchableOpacity, StyleSheet } from 'react-native';
-
-const initialData = [
-  {
-    id: '1',
-    name: 'Kabir Mika',
-    image: require("../../assets/john_doe.jpg"), // Replace with the actual path to the image
-    age: 30,
-    gender: 'Male',
-    physicalDescription: 'Black hair, brown eyes and skin, scar on left cheek.',
-    height: "5'9''",
-    lastSeen: ' Varanasi, UP on Jan 5, 2025.',
-  },
-  {
-    id: '2',
-    name: 'Jane Mary',
-    image: require("../../assets/jane_smith.jpg"), // Replace with the actual path to the image
-    age: 25,
-    gender: 'Female',
-    physicalDescription: 'Brown hair, green eyes, tattoo on right wrist.',
-    height: "5'6''",
-    lastSeen: 'Varanasi, UP on Dec 29, 2024.',
-  },
-];
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../../firebaseConfig'; // Make sure your firebase config is properly imported
 
 const MissingScreen = ({ navigation }) => {
-  const [missingPersons, setMissingPersons] = useState(initialData);
+  const [missingPersons, setMissingPersons] = useState([]);
+
+  useEffect(() => {
+    const fetchMissingPersons = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'Missing'));
+        const persons = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setMissingPersons(persons);
+      } catch (error) {
+        console.error('Error fetching missing persons:', error);
+      }
+    };
+
+    fetchMissingPersons();
+  }, []);
 
   const renderPerson = ({ item }) => (
     <TouchableOpacity
       style={styles.personContainer}
       onPress={() => navigation.navigate('PersonDetails', { person: item })}
     >
-      <Image source={item.image} style={styles.personImage} />
+      {item.imageUrl ? (
+        <Image source={{ uri: item.imageUrl }} style={styles.personImage} />
+      ) : (
+        <Image source={require('../../assets/default.png')} style={styles.personImage} />
+      )}
       <Text style={styles.personName}>{item.name}</Text>
     </TouchableOpacity>
   );
